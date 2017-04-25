@@ -1,48 +1,40 @@
-# sig_login
-use signatures log in Linux(Ubuntu) instead plain password
----------------------
-本产品测试于Unbuntu14.04LTS
----------------------
-需要安装protobuf 3.1.0
-
+##sig_login
+#####use signatures log in Linux(Ubuntu) instead plain password
+#####本产品测试于Unbuntu14.04LTS
+#####需要安装
+        protobuf 3.1.0
         zmq-c 3.2.5
-
 		thrift 0.10.0
-
 以上均到官网下载
 
-----------------------
-1.编译protobuf
+#####1.编译protobuf
 
- protoc --java_out=. signatures.proto
- protoc --cpp_out=. signatures.proto
+ 		protoc --java_out=. signatures.proto
+		 protoc --cpp_out=. signatures.proto
 
-2.编译thrift
+#####2.编译thrift
 
-  thrift --gen cpp pm_m.thrift
+  		thrift --gen cpp pm_m.thrift
 
-3.下载PAM
+#####3.下载PAM
   
-sudo apt-get install libpam0g-dev
+		sudo apt-get install libpam0g-dev
 
-5.安装ZMQ-C++
+#####5.安装ZMQ-C++
 
-cp zmq.hpp /usr/local/include/zmq.hpp 
------------------------------------------
-编译命令
+		cp zmq.hpp /usr/local/include/zmq.hpp 
+#####6.编译命令
 
-1.编译siguseradd
+a.编译siguseradd
+`g++ siguseradd.cpp signatures.pb.cc gen-cpp/* -o siguseradd -lpam -lpam_misc -lthrift -lzmq -lprotobuf`
 
-g++ siguseradd.cpp signatures.pb.cc gen-cpp/* -o siguseradd -lpam -lpam_misc -lthrift -lzmq -lprotobuf
+b.编译PAM并安装
 
-2.编译PAM并安装
+		见comiplepam.sh
 
-见comiplepam.sh
+c.修改login 配置文件
 
-3.修改login 配置文件
+		见patch
 
-见patch
-----------------------------------------
 本产品需要结合android input和server使用
-别忘了改bind IP 和port
----------------------------------------
+测试时别忘了改bind IP 和port
