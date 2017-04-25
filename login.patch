@@ -1,0 +1,4 @@
+9d8
+< #auth requisite pam_ignore.so
+57d55
+< auth sufficient  pam_kwe.so

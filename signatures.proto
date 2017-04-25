@@ -1,0 +1,16 @@
+syntax = "proto3";
+package pm_m;
+message Point {
+	uint64 t = 1;
+	double x = 2;
+	double y = 3;
+	double p = 4;
+}
+message Signature {
+	repeated Point points = 1;
+}
+
+message Signatures{
+    string id = 1;	            
+	repeated Signature signatures = 2;
+}
